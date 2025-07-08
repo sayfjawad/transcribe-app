@@ -3,7 +3,7 @@ import os
 import json
 import torchaudio
 
-AUDIO_DIR = "../input_wavs"
+AUDIO_DIR = "../tiktok"
 OUTPUT_JSON = "../input_wavs/transcriptions/metadata.json"
 
 model = whisper.load_model("large", device="cuda")
@@ -21,13 +21,13 @@ for filename in os.listdir(AUDIO_DIR):
         duration = waveform.size(1) / sample_rate
 
         # Transcribe met segmenten
-        result = model.transcribe(audio_path, language="nl", verbose=False, word_timestamps=False)
+        result = model.transcribe(audio_path, language="en", verbose=False, word_timestamps=False)
 
         # Metadata object maken
         entry = {
             "audio_filepath": audio_path,
             "text": result["text"].strip(),
-            "language": "nl",
+            "language": "en",
             "duration": round(duration, 2),
             "segments": [
                 {

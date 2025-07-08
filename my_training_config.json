@@ -1,0 +1,39 @@
+{
+  "model": "vits",
+  "run_name": "my-dutch-voice",
+  "output_path": "./output",
+  "num_loader_workers": 4,
+  "num_eval_loader_workers": 2,
+  "batch_size": 16,
+  "eval_batch_size": 16,
+  "num_epochs": 100,
+  "eval_split_size": 0.1,
+  "dataset": {
+    "formatter": "coqui",
+    "meta_file_train": "/home/sayf/git/transcribe-app/coqui_manifest.jsonl",
+    "meta_file_val": "/home/sayf/git/transcribe-app/coqui_manifest.jsonl",
+    "language": "nl"
+  },
+  "audio": {
+    "sampling_rate": 22050,
+    "win_length": 1024,
+    "hop_length": 256,
+    "fft_size": 1024,
+    "num_mels": 80,
+    "mel_fmin": 0,
+    "mel_fmax": 8000
+  },
+  "optimizer": {
+    "type": "adam",
+    "lr": 0.0002,
+    "weight_decay": 0,
+    "betas": [0.9, 0.98]
+  },
+  "loss": {
+    "type": "vits"
+  },
+  "model_args": {
+    "num_speakers": 1,
+    "use_language_embedding": true
+  }
+}
